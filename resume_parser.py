@@ -2,12 +2,11 @@
 import pdfplumber
 import openai
 
-#OpenAI API key
-openai.api_key = 'ADD-your-api-key-here'
+openai.api_key = 'enter-your-api-key'
 
 def parse_resume(file_path):
     try:
-        # Extracting text
+      
         with pdfplumber.open(file_path) as pdf:
             text = ''.join(page.extract_text() or '' for page in pdf.pages)
 
@@ -40,6 +39,7 @@ def parse_resume(file_path):
             temperature=0.7
         )
 
+        print("OpenAI API Response:", response) 
         extracted_data = response['choices'][0]['message']['content'].strip()
         return parse_response_to_dict(extracted_data)
     
@@ -47,9 +47,9 @@ def parse_resume(file_path):
         print(f"Error parsing resume: {e}")
         return None
 
+
 def parse_response_to_dict(response_text):
     try:
-        
         lines = response_text.split("\n")
         data = {}
         for line in lines:
