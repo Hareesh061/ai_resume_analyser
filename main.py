@@ -7,9 +7,11 @@ from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from resume_parser import parse_resume
 
+
 SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
 RESUME_FOLDER = 'downloads/'
 OUTPUT_FILE = 'Resume_Analysis.xlsx'
+
 
 # Google Drive Authentication
 def authenticate_google_drive():
@@ -30,6 +32,7 @@ def authenticate_google_drive():
 def download_resumes(drive_service, folder_name='Resumes'):
     if not os.path.exists(RESUME_FOLDER):
         os.makedirs(RESUME_FOLDER)
+
 
     results = drive_service.files().list(
         q=f"name='{folder_name}' and mimeType='application/vnd.google-apps.folder'",
