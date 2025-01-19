@@ -2,7 +2,8 @@
 import pdfplumber
 import openai
 
-openai.api_key = 'enter-your-api-key'
+# enter your open api key
+openai.api_key = 'Enter-your-api-key'
 
 def parse_resume(file_path):
     try:
